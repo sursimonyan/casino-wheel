@@ -4,10 +4,6 @@ import { computed } from 'vue';
 
 const props = defineProps<IRouletteItem>();
 
-const darkOrLight = computed(() => {
-  return `url(/src/assets/images/roulette/sector-${props.index % 2 === 0 ? 'light' : 'dark'}.png)`;;
-})
-
 const rotateDeg = computed(() => {
   return `transform: translateX(-50%) rotate(${props.index * 45}deg)`;
 })
@@ -33,7 +29,14 @@ const rotateDeg = computed(() => {
 
 .rouletteitem {
   clip-path: polygon(100% 0, 50% 100%, 0 0);
-  background: v-bind(darkOrLight) center / contain no-repeat;
+  
+  &:nth-child(odd) {
+    background: url("/src/assets/images/roulette/sector-light.png") center / contain no-repeat;
+  }
+
+  &:nth-child(even) {
+    background: url("/src/assets/images/roulette/sector-light.png")center / contain no-repeat;
+  }
 }
 
 </style>
